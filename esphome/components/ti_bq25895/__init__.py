@@ -18,7 +18,7 @@ CONF_VINDPM_FORCE = "vindpm_force"
 CONF_AUTO_DPDM_ENABLE = "auto_dpdm_enable"
 CONF_SYSTEM_MINIMUM_VOLTAGE = "system_minimum_voltage"
 CONF_VINDPM_VOLTAGE = "vindpm_voltage"
-CONF_CONTINUOUS_CONVERSION = "continuous conversion"
+CONF_CONTINUOUS_CONVERSION = "continuous_conversion"
 CONF_USE_ILIM_PIN = "use_ilim_pin"
 CONF_ILIM_CURRENT = "ilim_current"
 
