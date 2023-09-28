@@ -29,7 +29,9 @@ void TIBQ25895Component::setup() {
     this->set_bit_(0x03, 5, false);
     this->set_bit_(0x03, 7, true);
     this->set_bit_(0x02, 5, false);
-    this->set_bit_(0x02, 3, false);
+    this->set_bit_(0x02, 4, true);
+    this->set_bit_(0x07, 3, false);
+    this->set_bit_(0x09, 7, true);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
