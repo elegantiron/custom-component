@@ -26,6 +26,10 @@ void TIBQ25895Component::setup() {
     this->set_charge_voltage_limit_(this->charge_voltage_limit_);
     this->set_watchdog_timer_(this->watchdog_interval_);
     this->set_bit_(0x03, 4, true);
+    this->set_bit_(0x03, 5, false);
+    this->set_bit_(0x03, 7, true);
+    this->set_bit_(0x02, 5, false);
+    this->set_bit_(0x02, 3, false);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
