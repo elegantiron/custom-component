@@ -123,6 +123,7 @@ uint8_t TIBQ25895Component::get_vbus_status_() {
 
 void TIBQ25895Component::update() {
     this->set_bit_(0x03, 4, true);
+    this->set_bit_(0x09, 7, true);
     ESP_LOGV(TAG, "reading stats");
     float batt_voltage = this->get_battery_voltage_();
     int charge_current = this->get_charge_current_();
