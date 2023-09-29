@@ -131,7 +131,7 @@ void TIBQ25895Component::update() {
     this->read_byte(0x13, &raw);
     raw &= 0b001111111;
     raw *= 50;
-    ESP_LOGI(TAG, "IDPM_LIM: %i", raw);
+    ESP_LOGI(TAG, "IDPM_LIM: %u", raw);
     this->set_bit_(0x09, 7, true);
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
