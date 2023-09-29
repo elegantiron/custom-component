@@ -28,7 +28,7 @@ void TIBQ25895Component::setup() {
     this->set_watchdog_timer_(this->watchdog_interval_);
     this->set_bit_(0x03, 4, true);
     this->set_bit_(0x03, 5, false);
-    this->set_bit_(0x02, 5, false);
+    // this->set_bit_(0x02, 5, false);
     this->set_bit_(0x02, 4, true);
     this->set_bit_(0x07, 3, false);
     this->set_bit_(0x09, 7, true);
