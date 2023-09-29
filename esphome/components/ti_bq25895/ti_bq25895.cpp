@@ -15,6 +15,7 @@ void TIBQ25895Component::setup() {
     uint8_t new_idx = TIBQ25895Component::instances.size();
     TIBQ25895Component::instances.push_back(this);
 
+    this->set_bit_(0x14, 7, true);
     this->pet_dog_();
     this->set_continuous_conversion_(this->continuous_conversion_);
     this->set_input_current_pin_enabled_(this->input_current_pin_enabled_);
@@ -27,7 +28,6 @@ void TIBQ25895Component::setup() {
     this->set_watchdog_timer_(this->watchdog_interval_);
     this->set_bit_(0x03, 4, true);
     this->set_bit_(0x03, 5, false);
-    this->set_bit_(0x03, 7, true);
     this->set_bit_(0x02, 5, false);
     this->set_bit_(0x02, 4, true);
     this->set_bit_(0x07, 3, false);
