@@ -127,11 +127,11 @@ void TIBQ25895Component::update() {
     float batt_voltage = this->get_battery_voltage_();
     int charge_current = this->get_charge_current_();
     float supply_voltage = this->get_supply_voltage_();
-    uint8_t raw;
+    int raw;
     this->read_byte(0x13, &raw);
     raw &= 0b001111111;
     raw *= 50;
-    ESP_LOGI(TAG, "IDPM_LIM: %u", raw);
+    ESP_LOGI(TAG, "IDPM_LIM: %i", raw);
     this->set_bit_(0x09, 7, true);
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
