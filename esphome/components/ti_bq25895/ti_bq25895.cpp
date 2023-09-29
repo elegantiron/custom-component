@@ -26,12 +26,12 @@ void TIBQ25895Component::setup() {
     this->set_charge_voltage_limit_(this->charge_voltage_limit_);
     this->set_watchdog_timer_(this->watchdog_interval_);
     this->set_bit_(0x03, 4, true);
-    // this->set_bit_(0x03, 5, false);
-    // this->set_bit_(0x03, 7, true);
-    // this->set_bit_(0x02, 5, false);
-    // this->set_bit_(0x02, 4, true);
-    // this->set_bit_(0x07, 3, false);
-    // this->set_bit_(0x09, 7, true);
+    this->set_bit_(0x03, 5, false);
+    this->set_bit_(0x03, 7, true);
+    this->set_bit_(0x02, 5, false);
+    this->set_bit_(0x02, 4, true);
+    this->set_bit_(0x07, 3, false);
+    this->set_bit_(0x09, 7, true);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
@@ -123,11 +123,16 @@ uint8_t TIBQ25895Component::get_vbus_status_() {
 
 void TIBQ25895Component::update() {
     this->set_bit_(0x03, 4, true);
-    // this->set_bit_(0x09, 7, true);
     ESP_LOGV(TAG, "reading stats");
     float batt_voltage = this->get_battery_voltage_();
     int charge_current = this->get_charge_current_();
     float supply_voltage = this->get_supply_voltage_();
+    uint8_t raw;
+    this->read_byte(0x13, &raw);
+    raw &= 0b001111111;
+    raw *= 50;
+    ESP_LOGI(TAG, "IDPM_LIM: %i", raw);
+    this->set_bit_(0x09, 7, true);
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
     if (this->batt_voltage_sensor_ != nullptr)
