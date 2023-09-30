@@ -29,9 +29,9 @@ void TIBQ25895Component::setup() {
     this->set_bit_(0x03, 4, true);
     this->set_bit_(0x03, 5, false);
     // this->set_bit_(0x02, 5, false);
-    this->set_bit_(0x02, 4, true);
+    // this->set_bit_(0x02, 4, true);
     this->set_bit_(0x07, 3, false);
-    this->set_bit_(0x09, 7, true);
+    // this->set_bit_(0x09, 7, true);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
@@ -132,7 +132,7 @@ void TIBQ25895Component::update() {
     int idpm = raw & 0b001111111;
     idpm *= 50;
     ESP_LOGI(TAG, "IDPM_LIM: %i", idpm);
-    this->set_bit_(0x09, 7, true);
+    // this->set_bit_(0x09, 7, true);
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
     if (this->batt_voltage_sensor_ != nullptr)
