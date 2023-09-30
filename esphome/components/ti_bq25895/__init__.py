@@ -139,7 +139,8 @@ INPUT_CURRENT_LIMIT = {
     "1.05A": ti_bq25895InputCurrentLimit.INPUT_CURRENT_LIMIT_1050,
     "1.1A":  ti_bq25895InputCurrentLimit.INPUT_CURRENT_LIMIT_1100,
     "1.15A": ti_bq25895InputCurrentLimit.INPUT_CURRENT_LIMIT_1150,
-    "1.2A":  ti_bq25895InputCurrentLimit.INPUT_CURRENT_LIMIT_1200
+    "1.2A":  ti_bq25895InputCurrentLimit.INPUT_CURRENT_LIMIT_1200,
+    "5A":    ti_bq25895InputCurrentLimit.INPUT_CURRENT_LIMIT_5000,
 }
 TIBQ25895Component = ti_bq25895_ns.class_(
     "TIBQ25895Component", cg.PollingComponent, i2c.I2CDevice
@@ -165,7 +166,7 @@ CONFIG_SCHEMA = cv.All(
             ),
             cv.Optional(CONF_CONTINUOUS_CONVERSION, default = "enable"): cv.boolean,
             cv.Optional(CONF_USE_ILIM_PIN, default = "no"): cv.boolean,
-            cv.Optional(CONF_ILIM_CURRENT, default = "1.2a"): cv.enum(
+            cv.Optional(CONF_ILIM_CURRENT, default = "5a"): cv.enum(
                 INPUT_CURRENT_LIMIT, upper=True
             )
            
