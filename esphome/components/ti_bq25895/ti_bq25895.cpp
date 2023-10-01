@@ -130,7 +130,7 @@ void TIBQ25895Component::update() {
     float supply_voltage = this->get_supply_voltage_();
     uint8_t raw;
     this->read_byte(0x13, &raw);
-    int idpm = int(raw) & 0b001111111;
+    int idpm = int(raw) & 0b00111111;
     bool in_vdpm = raw & 0b10000000;
     bool in_idpm = raw & 0b01000000;
     idpm *= 50;
