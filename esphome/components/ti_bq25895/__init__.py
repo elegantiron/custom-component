@@ -21,6 +21,7 @@ CONF_VINDPM_VOLTAGE = "vindpm_voltage"
 CONF_CONTINUOUS_CONVERSION = "continuous_conversion"
 CONF_USE_ILIM_PIN = "use_ilim_pin"
 CONF_ILIM_CURRENT = "ilim_current"
+CONF_ICO_ENABLED = "ico_enabled"
 
 ti_bq25895_ns = cg.esphome_ns.namespace("ti_bq25895")
 
@@ -150,13 +151,14 @@ CONFIG_SCHEMA = cv.All(
     cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(TIBQ25895Component),
+            cv.Optional(CONF_ICO_ENABLED, default="enable"): cv.boolean,
             cv.Optional(CONF_WATCHDOG_TIMER, default="80s"): cv.enum(
                 WATCHDOG_TIMER_OPTIONS, upper=True
             ),
             cv.Optional(CONF_CHARGE_VOLTAGE_LIMIT, default="4208v"): cv.enum(
                 CHARGE_VOLTAGE_LIMIT, upper=True
             ),
-            cv.Optional(CONF_VINDPM_FORCE, default = "enable"): cv.boolean,
+            cv.Optional(CONF_VINDPM_FORCE, default = "disable"): cv.boolean,
             cv.Optional(CONF_AUTO_DPDM_ENABLE, default = "disable"): cv.boolean,
             cv.Optional(CONF_SYSTEM_MINIMUM_VOLTAGE, default = "3.6v"): cv.enum(
                 SYSTEM_MINIMUM_VOLTAGE, upper=True

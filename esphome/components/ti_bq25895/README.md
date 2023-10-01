@@ -11,13 +11,14 @@ ti_bq25895:
   address: 0x6A
   watchdog_timer: 80s
   charge_voltage_limit: 4208v
-  vindpm_force: yes
-  auto_dpdm_enable: false
+  vindpm_force: no
+  auto_dpdm_enable: no
   system_minimum_voltage: 3.6v
   vindpm_voltage: 4.4v
   continuous_conversion: yes
   use_ilim_pin: no
-  ilim_current: 1.2A
+  ilim_current: 5A
+  ico_enabled: yes
 
 sensor:
     - platform: ti_bq25895
@@ -30,4 +31,7 @@ sensor:
       supply_voltage:
         id: supp_voltage
         name: Supply Voltage
+      idpm_limit:
+        id: idpm_lim
+        name: IDPM Limit
 ```

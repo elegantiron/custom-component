@@ -216,6 +216,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_battery_voltage_sensor(sensor::Sensor *sensor) { this->batt_voltage_sensor_ = sensor; }
         void set_charge_current_sensor(sensor::Sensor *sensor) {this->charge_current_sensor_ = sensor; }
         void set_supply_voltage_sensor(sensor::Sensor *sensor) {this->supply_voltage_sensor_ = sensor; }
+        void set_idpm_limit_sensor(sensor::Sensor *sensor) {this->idpm_limit_sensor_ = sensor; }
 
 
         void setup() override;
@@ -229,6 +230,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_input_current_pin_enabled_(bool enabled) { this->set_bit_(0x00, 6, enabled); }
         void set_input_voltage_dpm_enabled_(bool enabled) { this->set_bit_(0x0D, 7, enabled); }
         void set_auto_dpm_enabled_(bool enabled) { this->set_bit_(0x02, 0, enabled); }
+        void set_input_current_optimization_enabled_(bool enabled) { this->set_bit_(0x02, 4, enabled); }
         void set_input_limit_current_(ti_bq25895InputCurrentLimit setting);
         void set_vin_dpm_voltage_(ti_bq25895VinDPMVoltage voltage);
         void set_charge_voltage_limit_(ti_bq25895ChargeVoltageLimit setting);
@@ -236,6 +238,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_watchdog_timer_(ti_bq25895WatchdogTimer setting);
         float get_battery_voltage_();
         int get_charge_current_();
+        int get_idpm_limit_();
         float get_supply_voltage_();
         bool get_watchdog_fault_();
         uint8_t get_vbus_status_();
@@ -249,11 +252,13 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
             continuous_conversion_,
             input_current_pin_enabled_,
             input_voltage_dpm_enabled_,
-            auto_dpm_enabled_;
+            auto_dpm_enabled_,
+            input_current_optimization_enabled_;
         
         sensor::Sensor *batt_voltage_sensor_{nullptr};
         sensor::Sensor *charge_current_sensor_{nullptr};
         sensor::Sensor *supply_voltage_sensor_{nullptr};
+        sensor::Sensor *idpm_limit_sensor_{nullptr};
 };
 
 }

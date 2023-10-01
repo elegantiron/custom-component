@@ -17,12 +17,14 @@ DEPENDENCIES = ["ti_bq25895"]
 CONF_BATT_VOLTAGE = "battery_voltage"
 CONF_CHARGE_CURRENT = "charge_current"
 CONF_SUPPLY_VOLTAGE = "supply_voltage"
+CONF_IDPM_LIMIT = "idpm_limit"
 UNIT_MILLIAMPERE = "mA"
 
 TYPES = [
     CONF_BATT_VOLTAGE,
     CONF_CHARGE_CURRENT,
-    CONF_SUPPLY_VOLTAGE
+    CONF_SUPPLY_VOLTAGE,
+    CONF_IDPM_LIMIT
 ]
 
 CONFIG_SCHEMA = cv.All(
@@ -45,6 +47,12 @@ CONFIG_SCHEMA = cv.All(
                 unit_of_measurement=UNIT_VOLT,
                 accuracy_decimals=1,
                 device_class=DEVICE_CLASS_VOLTAGE,
+                state_class=STATE_CLASS_MEASUREMENT
+            ),
+            cv.Optional(CONF_IDPM_LIMIT): sensor.sensor_schema(
+                unit_of_measurement=UNIT_MILLIAMPERE,
+                accuracy_decimals=0,
+                device_class=DEVICE_CLASS_CURRENT,
                 state_class=STATE_CLASS_MEASUREMENT
             )
         }
