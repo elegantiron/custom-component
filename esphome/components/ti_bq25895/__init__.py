@@ -22,6 +22,7 @@ CONF_CONTINUOUS_CONVERSION = "continuous_conversion"
 CONF_USE_ILIM_PIN = "use_ilim_pin"
 CONF_ILIM_CURRENT = "ilim_current"
 CONF_ICO_ENABLED = "ico_enabled"
+CONF_SWITCH_FREQUENCY = "high_freq_enabled"
 
 ti_bq25895_ns = cg.esphome_ns.namespace("ti_bq25895")
 
@@ -152,6 +153,7 @@ CONFIG_SCHEMA = cv.All(
         {
             cv.GenerateID(): cv.declare_id(TIBQ25895Component),
             cv.Optional(CONF_ICO_ENABLED, default="enable"): cv.boolean,
+            cv.Optional(CONF_SWITCH_FREQUENCY, default="disable"): cv.boolean,
             cv.Optional(CONF_WATCHDOG_TIMER, default="80s"): cv.enum(
                 WATCHDOG_TIMER_OPTIONS, upper=True
             ),
@@ -193,5 +195,7 @@ async def to_code(config):
     cg.add(var.set_continuous_conversion(config[CONF_CONTINUOUS_CONVERSION]))
     cg.add(var.set_input_current_pin_enabled(config[CONF_USE_ILIM_PIN]))
     cg.add(var.set_auto_dpm_enabled(config[CONF_AUTO_DPDM_ENABLE]))
+    cg.add(var.set_ico_enabled(config[CONFIG_ICO_ENABLED]))
+    cg.add(var.set_switch_frequency(config[CONFIG_SWITCH_FREQUENCY]))
     
     

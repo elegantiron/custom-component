@@ -209,6 +209,8 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_system_minimum_voltage(ti_bq25895SystemMinimumVoltage minimum) { this->system_minimum_voltage_ = minimum; }
         void set_vindpm_voltage(ti_bq25895VinDPMVoltage voltage) { this->vindpm_voltage_ = voltage; }
         void set_vindpm(bool enabled) { this->force_vindpm_ = enabled; }
+        void set_switch_frequency(bool enabled) { this->use_high_frequency_ = enabled; }
+        void set_ico_enabled(bool enabled) {this->input_current_optimization_enabled_ = enabled; }
         void set_continuous_conversion(bool enabled) { this->continuous_conversion_ = enabled; }
         void set_input_current_pin_enabled(bool enabled) { this->input_current_pin_enabled_ = enabled; }
         void set_input_voltage_dpm_enabled(bool enabled) { this->input_voltage_dpm_enabled_ = enabled; }
@@ -236,6 +238,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_charge_voltage_limit_(ti_bq25895ChargeVoltageLimit setting);
         void set_system_minimum_voltage_(ti_bq25895SystemMinimumVoltage setting);
         void set_watchdog_timer_(ti_bq25895WatchdogTimer setting);
+        void set_switch_frequency_(bool enabled);
         float get_battery_voltage_();
         int get_charge_current_();
         int get_idpm_limit_();
@@ -253,7 +256,8 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
             input_current_pin_enabled_,
             input_voltage_dpm_enabled_,
             auto_dpm_enabled_,
-            input_current_optimization_enabled_;
+            input_current_optimization_enabled_,
+            use_high_frequency_;
         
         sensor::Sensor *batt_voltage_sensor_{nullptr};
         sensor::Sensor *charge_current_sensor_{nullptr};

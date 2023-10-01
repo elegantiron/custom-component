@@ -26,6 +26,8 @@ void TIBQ25895Component::setup() {
     this->set_system_minimum_voltage_(this->system_minimum_voltage_);
     this->set_charge_voltage_limit_(this->charge_voltage_limit_);
     this->set_watchdog_timer_(this->watchdog_interval_);
+    this->set_switch_frequency_(this->use_high_frequency_);
+    this->set_input_current_optimization_enabled_(this->input_current_optimization_enabled_);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
@@ -121,6 +123,15 @@ int TIBQ25895Component::get_idpm_limit_() {
     raw &= 0b00111111;
     int limit = int(raw) * 50;
     return limit;
+}
+
+void TIBQ25895Component::set_switch_frequency_(bool enabled) {
+    if (enabled) {
+        this->set_bit_(0x03, 5, false);
+        this->set_bit_(0x02, 5, false);
+    } else {
+        this->set_bit_(0x02, 5, true);
+    }
 }
 
 void TIBQ25895Component::update() {
