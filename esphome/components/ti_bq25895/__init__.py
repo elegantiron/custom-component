@@ -195,7 +195,7 @@ async def to_code(config):
     cg.add(var.set_continuous_conversion(config[CONF_CONTINUOUS_CONVERSION]))
     cg.add(var.set_input_current_pin_enabled(config[CONF_USE_ILIM_PIN]))
     cg.add(var.set_auto_dpm_enabled(config[CONF_AUTO_DPDM_ENABLE]))
-    cg.add(var.set_ico_enabled(config[CONFIG_ICO_ENABLED]))
-    cg.add(var.set_switch_frequency(config[CONFIG_SWITCH_FREQUENCY]))
+    cg.add(var.set_ico_enabled(config[CONF_ICO_ENABLED]))
+    cg.add(var.set_switch_frequency(config[CONF_SWITCH_FREQUENCY]))
     
     
