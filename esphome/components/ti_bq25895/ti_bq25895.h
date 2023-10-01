@@ -236,6 +236,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_watchdog_timer_(ti_bq25895WatchdogTimer setting);
         float get_battery_voltage_();
         int get_charge_current_();
+        int get_idpm_limit();
         float get_supply_voltage_();
         bool get_watchdog_fault_();
         uint8_t get_vbus_status_();
@@ -249,7 +250,8 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
             continuous_conversion_,
             input_current_pin_enabled_,
             input_voltage_dpm_enabled_,
-            auto_dpm_enabled_;
+            auto_dpm_enabled_,
+            input_current_optimization_enabled_;
         
         sensor::Sensor *batt_voltage_sensor_{nullptr};
         sensor::Sensor *charge_current_sensor_{nullptr};
