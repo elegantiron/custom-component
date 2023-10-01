@@ -229,6 +229,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_input_current_pin_enabled_(bool enabled) { this->set_bit_(0x00, 6, enabled); }
         void set_input_voltage_dpm_enabled_(bool enabled) { this->set_bit_(0x0D, 7, enabled); }
         void set_auto_dpm_enabled_(bool enabled) { this->set_bit_(0x02, 0, enabled); }
+        void set_input_current_optimization_enabled_(bool enabled) { this->set_bit_(0x02, 4, enabled); }
         void set_input_limit_current_(ti_bq25895InputCurrentLimit setting);
         void set_vin_dpm_voltage_(ti_bq25895VinDPMVoltage voltage);
         void set_charge_voltage_limit_(ti_bq25895ChargeVoltageLimit setting);
