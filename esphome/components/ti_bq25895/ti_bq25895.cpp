@@ -130,7 +130,7 @@ void TIBQ25895Component::update() {
     float supply_voltage = this->get_supply_voltage_();
     uint8_t raw;
     this->read_byte(0x13, &raw);
-    int idpm = raw & 0b001111111;
+    int idpm = int(raw) & 0b001111111;
     idpm *= 50;
     ESP_LOGI(TAG, "IDPM_LIM: %i", idpm);
     this->set_bit_(0x09, 7, true);
