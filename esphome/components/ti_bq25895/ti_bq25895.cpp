@@ -115,6 +115,14 @@ uint8_t TIBQ25895Component::get_vbus_status_() {
     return status;
 }
 
+int TIBQ25895Component::get_idpm_limit_() {
+    uint8_t raw;
+    this->read_byte(0x13, &raw);
+    raw &= 0b00111111;
+    int limit = int(raw) * 50;
+    return limit;
+}
+
 void TIBQ25895Component::update() {
     if (this->input_current_optimization_enabled_) {
         this->set_bit_(0x03, 4, true);
