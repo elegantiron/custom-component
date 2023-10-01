@@ -128,11 +128,6 @@ void TIBQ25895Component::update() {
         this->set_bit_(0x09, 7, true);
     }
     ESP_LOGV(TAG, "reading stats");
-
-    this->read_byte(0x14, &raw);
-    bool ico_optimized = raw & 0b01000000;
-    ESP_LOGI(TAG, "ICO_OPTIMIZED: %s", ico_optimized ? "yes" : "no");
-    
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
     if (this->batt_voltage_sensor_ != nullptr) {
