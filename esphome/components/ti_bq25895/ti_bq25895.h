@@ -237,7 +237,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_watchdog_timer_(ti_bq25895WatchdogTimer setting);
         float get_battery_voltage_();
         int get_charge_current_();
-        int get_idpm_limit();
+        int get_idpm_limit_();
         float get_supply_voltage_();
         bool get_watchdog_fault_();
         uint8_t get_vbus_status_();
