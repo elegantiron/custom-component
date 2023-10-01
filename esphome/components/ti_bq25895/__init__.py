@@ -21,7 +21,7 @@ CONF_VINDPM_VOLTAGE = "vindpm_voltage"
 CONF_CONTINUOUS_CONVERSION = "continuous_conversion"
 CONF_USE_ILIM_PIN = "use_ilim_pin"
 CONF_ILIM_CURRENT = "ilim_current"
-CONF_ICO_ENABLED = "ICO_enabled"
+CONF_ICO_ENABLED = "ico_enabled"
 
 ti_bq25895_ns = cg.esphome_ns.namespace("ti_bq25895")
 
