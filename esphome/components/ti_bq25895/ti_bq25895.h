@@ -216,6 +216,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_battery_voltage_sensor(sensor::Sensor *sensor) { this->batt_voltage_sensor_ = sensor; }
         void set_charge_current_sensor(sensor::Sensor *sensor) {this->charge_current_sensor_ = sensor; }
         void set_supply_voltage_sensor(sensor::Sensor *sensor) {this->supply_voltage_sensor_ = sensor; }
+        void set_idpm_limit_sensor(sensor::Sensor *sensor) {this->idpm_limit_sensor_ = sensor; }
 
 
         void setup() override;
