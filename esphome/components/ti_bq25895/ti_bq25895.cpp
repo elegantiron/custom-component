@@ -135,7 +135,7 @@ void TIBQ25895Component::update() {
     bool in_idpm = raw & 0b01000000;
     idpm *= 50;
     ESP_LOGI(TAG, "IDPM_LIM: %i", idpm);
-    ESP_LOGI(TAG, "IN_VINDPM: " + in_vdpm ? "yes " : "no " + "IN_IINDPM: " + in_idpm ? "yes" : "no");
+    ESP_LOGI(TAG, "IN_VINDPM: %s; IN_IINDPM: %s", in_vdpm ? "yes " : "no ", in_idpm ? "yes" : "no");
     this->set_bit_(0x09, 7, true);
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
