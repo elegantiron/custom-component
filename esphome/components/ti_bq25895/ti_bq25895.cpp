@@ -26,13 +26,6 @@ void TIBQ25895Component::setup() {
     this->set_system_minimum_voltage_(this->system_minimum_voltage_);
     this->set_charge_voltage_limit_(this->charge_voltage_limit_);
     this->set_watchdog_timer_(this->watchdog_interval_);
-    this->set_bit_(0x03, 4, true);
-    this->set_bit_(0x03, 5, false);
-    // this->write_byte(0x04, 0b00110000);
-    this->set_bit_(0x02, 5, false);
-    this->set_bit_(0x02, 4, true);
-    this->set_bit_(0x07, 3, false);
-    this->set_bit_(0x09, 7, true);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
@@ -123,30 +116,27 @@ uint8_t TIBQ25895Component::get_vbus_status_() {
 }
 
 void TIBQ25895Component::update() {
-    this->set_bit_(0x03, 4, true);
+    if (this->input_current_optimization_enabled_) {
+        this->set_bit_(0x03, 4, true);
+    }
     ESP_LOGV(TAG, "reading stats");
-    float batt_voltage = this->get_battery_voltage_();
-    int charge_current = this->get_charge_current_();
-    float supply_voltage = this->get_supply_voltage_();
-    uint8_t raw;
-    this->read_byte(0x13, &raw);
-    int idpm = int(raw) & 0b00111111;
-    bool in_vdpm = raw & 0b10000000;
-    bool in_idpm = raw & 0b01000000;
-    idpm *= 50;
-    ESP_LOGI(TAG, "IDPM_LIM: %i", idpm);
-    ESP_LOGI(TAG, "IN_VINDPM: %s; IN_IINDPM: %s", in_vdpm ? "yes " : "no ", in_idpm ? "yes" : "no");
+
     this->read_byte(0x14, &raw);
     bool ico_optimized = raw & 0b01000000;
     ESP_LOGI(TAG, "ICO_OPTIMIZED: %s", ico_optimized ? "yes" : "no");
     this->set_bit_(0x09, 7, true);
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
-    if (this->batt_voltage_sensor_ != nullptr)
+    if (this->batt_voltage_sensor_ != nullptr) {
+        float batt_voltage = this->get_battery_voltage_();
         this->batt_voltage_sensor_->publish_state(batt_voltage);
-    if (this->charge_current_sensor_ != nullptr)
+    }
+    if (this->charge_current_sensor_ != nullptr) {
+        int charge_current = this->get_charge_current_();
         this->charge_current_sensor_->publish_state(charge_current);
-    if (this->supply_voltage_sensor_ != nullptr)
+    }
+    if (this->supply_voltage_sensor_ != nullptr) {
+        float supply_voltage = this->get_supply_voltage_();
         this->supply_voltage_sensor_->publish_state(supply_voltage);
 }
 
