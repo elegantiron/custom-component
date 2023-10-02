@@ -28,6 +28,7 @@ void TIBQ25895Component::setup() {
     this->set_watchdog_timer_(this->watchdog_interval_);
     this->set_switch_frequency_(this->use_high_frequency_);
     this->set_input_current_optimization_enabled_(this->input_current_optimization_enabled_);
+    this->set_bit_(0x03, 4, true);
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
@@ -141,6 +142,7 @@ void TIBQ25895Component::update() {
     ESP_LOGV(TAG, "reading stats");
     // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
+    this->set_bit_(0x03, 4, true);
     if (this->batt_voltage_sensor_ != nullptr) {
         float batt_voltage = this->get_battery_voltage_();
         this->batt_voltage_sensor_->publish_state(batt_voltage);
