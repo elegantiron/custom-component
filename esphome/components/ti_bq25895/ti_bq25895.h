@@ -239,7 +239,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_system_minimum_voltage_(ti_bq25895SystemMinimumVoltage setting);
         void set_watchdog_timer_(ti_bq25895WatchdogTimer setting);
         void set_switch_frequency_(bool enabled);
-        void enable_charging_() {this->set_bit_(0x03, 4, true)};
+        void enable_charging_() {this->set_bit_(0x03, 4, true);}
         float get_battery_voltage_();
         int get_charge_current_();
         int get_idpm_limit_();
