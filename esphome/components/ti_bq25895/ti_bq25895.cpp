@@ -12,7 +12,6 @@ std::vector<TIBQ25895Component *> TIBQ25895Component::instances;
 void TIBQ25895Component::setup() {
     ESP_LOGCONFIG(TAG, "Setting up BQ25895...");
 
-    uint8_t new_idx = TIBQ25895Component::instances.size();
     TIBQ25895Component::instances.push_back(this);
 
     this->set_bit_(0x14, 7, true);
