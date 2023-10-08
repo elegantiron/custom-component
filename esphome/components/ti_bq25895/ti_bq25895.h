@@ -219,6 +219,8 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_charge_current_sensor(sensor::Sensor *sensor) {this->charge_current_sensor_ = sensor; }
         void set_supply_voltage_sensor(sensor::Sensor *sensor) {this->supply_voltage_sensor_ = sensor; }
         void set_idpm_limit_sensor(sensor::Sensor *sensor) {this->idpm_limit_sensor_ = sensor; }
+        void enable_charging() {this->enable_charging_();}
+        void disable_charging() {this->disable_charging_();}
 
 
         void setup() override;
@@ -240,6 +242,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void set_watchdog_timer_(ti_bq25895WatchdogTimer setting);
         void set_switch_frequency_(bool enabled);
         void enable_charging_() {this->set_bit_(0x03, 4, true);}
+        void disable_charging_() {this->set_bit_(0x03, 4, false);}
         float get_battery_voltage_();
         int get_charge_current_();
         int get_idpm_limit_();
