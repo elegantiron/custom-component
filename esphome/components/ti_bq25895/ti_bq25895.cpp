@@ -31,7 +31,6 @@ void TIBQ25895Component::setup() {
 }
 
 void TIBQ25895Component::set_bit_(uint8_t reg, uint8_t pos, bool bit) {
-    // uint8_t data = uint8_t(bit) << pos;
     uint8_t temp;
     this->read_byte(reg, &temp);
     temp &= ~(0b1 << pos);
@@ -139,7 +138,6 @@ void TIBQ25895Component::update() {
         this->set_bit_(0x09, 7, true);
     }
     ESP_LOGV(TAG, "reading stats");
-    // ESP_LOGW(TAG, "Got batt=%.3fV current=%.0fmA supply=%.3fV", batt_voltage, charge_current, supply_voltage);
     this->pet_dog_();
     this->enable_charging_();
     if (this->batt_voltage_sensor_ != nullptr) {
