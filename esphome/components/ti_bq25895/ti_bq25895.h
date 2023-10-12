@@ -245,7 +245,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         void disable_charging_() {this->set_bit_(0x03, 4, false);}
         float get_battery_voltage_();
         int get_charge_current_();
-        int get_idpm_limit_();
+        uint get_idpm_limit_();
         float get_supply_voltage_();
         bool get_watchdog_fault_();
         uint8_t get_vbus_status_();

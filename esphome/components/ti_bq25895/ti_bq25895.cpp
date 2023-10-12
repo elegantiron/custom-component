@@ -116,11 +116,11 @@ uint8_t TIBQ25895Component::get_vbus_status_() {
     return status;
 }
 
-int TIBQ25895Component::get_idpm_limit_() {
+uint TIBQ25895Component::get_idpm_limit_() {
     uint8_t raw;
     this->read_byte(0x13, &raw);
     raw &= 0b00111111;
-    int limit = int(raw) * 50;
+    uint limit = uint(raw) * 50;
     return limit;
 }
 
