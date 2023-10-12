@@ -140,7 +140,7 @@ void TIBQ25895Component::set_switch_frequency_(bool enabled) {
 }
 
 void TIBQ25895Component::update() {
-    if (this->input_current_optimization_enabled_) {
+    if (this->input_current_optimization_enabled_ && update_count_ == 0) {
         this->set_bit_(0x09, 7, true);
     }
     ESP_LOGV(TAG, "reading stats");
@@ -158,10 +158,12 @@ void TIBQ25895Component::update() {
         float supply_voltage = this->get_supply_voltage_();
         this->supply_voltage_sensor_->publish_state(supply_voltage);
     }
-    if (this->idpm_limit_sensor_ != nullptr) {
+    if (this->idpm_limit_sensor_ != nullptr && update_count_ != 0) {
         int idpm_limit = this->get_idpm_limit_();
         this->idpm_limit_sensor_->publish_state(idpm_limit);
     }
+    update_count_++;
+    if (update_count_ == 10) update_count_ = 0;
 }
 
 }
