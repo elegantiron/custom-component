@@ -27,6 +27,9 @@ void TIBQ25895Component::setup() {
     this->set_watchdog_timer_(this->watchdog_interval_);
     this->set_switch_frequency_(this->use_high_frequency_);
     this->set_input_current_optimization_enabled_(this->input_current_optimization_enabled_);
+    if (this->input_current_optimization_enabled_) {
+        this->set_bit_(0x09, 7, true);
+    }
     this->enable_charging_();
 }
 
