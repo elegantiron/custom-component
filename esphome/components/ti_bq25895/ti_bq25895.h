@@ -249,7 +249,6 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         float get_supply_voltage_();
         bool get_watchdog_fault_();
         uint8_t get_vbus_status_();
-        int update_count_ = 0;
         std::string device_id_;
         ti_bq25895WatchdogTimer watchdog_interval_;
         ti_bq25895InputCurrentLimit input_current_limit_;
@@ -262,7 +261,8 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
             input_voltage_dpm_enabled_,
             auto_dpm_enabled_,
             input_current_optimization_enabled_,
-            use_high_frequency_;
+            use_high_frequency_,
+            run_ico_algorithm_;
         
         sensor::Sensor *batt_voltage_sensor_{nullptr};
         sensor::Sensor *charge_current_sensor_{nullptr};
