@@ -262,7 +262,7 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
             auto_dpm_enabled_,
             input_current_optimization_enabled_,
             use_high_frequency_,
-            run_ico_algorithm_;
+            run_ico_algorithm_ = false;
         
         sensor::Sensor *batt_voltage_sensor_{nullptr};
         sensor::Sensor *charge_current_sensor_{nullptr};
