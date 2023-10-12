@@ -122,7 +122,7 @@ uint TIBQ25895Component::get_idpm_limit_() {
     ESP_LOGI(TAG, "raw: %u", raw);
     raw &= 0b00111111;
     ESP_LOGI(TAG, "raw: %u", raw);
-    uint limit = uint(raw) * 50;
+    uint limit = (uint(raw) * 50) + 100;
     ESP_LOGI(TAG, "raw: %u; limit: %u", raw, limit);
     return limit;
 }
