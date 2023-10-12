@@ -158,7 +158,7 @@ void TIBQ25895Component::update() {
         float supply_voltage = this->get_supply_voltage_();
         this->supply_voltage_sensor_->publish_state(supply_voltage);
     }
-    if (this->idpm_limit_sensor_ != nullptr && update_count_ != 0) {
+    if (this->idpm_limit_sensor_ != nullptr && update_count_ == 5) {
         int idpm_limit = this->get_idpm_limit_();
         this->idpm_limit_sensor_->publish_state(idpm_limit);
     }
