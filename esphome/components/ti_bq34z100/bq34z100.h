@@ -6,7 +6,6 @@
 #include "esphome/core/preferences.h"
 #include "esphome/core/defines.h"
 #include "enums.h"
-#include <cstdint>
 
 namespace esphome {
 namespace bq34z100 {
