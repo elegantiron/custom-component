@@ -256,13 +256,13 @@ class TIBQ25895Component : public PollingComponent, public i2c::I2CDevice {
         ti_bq25895SystemMinimumVoltage system_minimum_voltage_;
         ti_bq25895VinDPMVoltage vindpm_voltage_;
         bool force_vindpm_,
-            continuous_conversion_,
-            input_current_pin_enabled_,
-            input_voltage_dpm_enabled_,
-            auto_dpm_enabled_,
-            input_current_optimization_enabled_,
-            use_high_frequency_,
-            run_ico_algorithm_ = false;
+             continuous_conversion_,
+             input_current_pin_enabled_,
+             input_voltage_dpm_enabled_,
+             auto_dpm_enabled_,
+             input_current_optimization_enabled_,
+             use_high_frequency_,
+             run_ico_algorithm_ = false;
         
         sensor::Sensor *batt_voltage_sensor_{nullptr};
         sensor::Sensor *charge_current_sensor_{nullptr};
