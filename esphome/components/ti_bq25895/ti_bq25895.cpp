@@ -30,6 +30,7 @@ void TIBQ25895Component::setup() {
     if (this->input_current_optimization_enabled_) {
         this->set_bit_(0x09, 7, true);
     }
+    this->set_bit_(0x07, 3, false);
     this->enable_charging_();
 }
 
