@@ -142,7 +142,7 @@ void TIBQ25895Component::update() {
     }
     ESP_LOGV(TAG, "reading stats");
     this->pet_dog_();
-    this->enable_charging_();
+    // this->enable_charging_();
     if (this->batt_voltage_sensor_ != nullptr) {
         float batt_voltage = this->get_battery_voltage_();
         this->batt_voltage_sensor_->publish_state(batt_voltage);
